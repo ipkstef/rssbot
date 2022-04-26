@@ -1,10 +1,13 @@
 import feedparser
 from discord_webhook import DiscordWebhook, DiscordEmbed
 import time
+import os
 
 d = feedparser.parse('https://yts.mx/rss')
 
-webhook = DiscordWebhook(url='https://discord.com/api/webhooks/966135441009033247/XZIallXTKo0jvnFdXEn_IJIQbLDYJb0qFo3yLC6RXo_mL2HaJ8sW7V2Q2fmhSa5XhFvn', rate_limit_retry=True)
+webhookurl = os.getenv('WEBHOOKURL')
+
+webhook = DiscordWebhook(url=webhookurl, rate_limit_retry=True)
 
 day_parsed = str(d.feed.updated_parsed[2])
 
